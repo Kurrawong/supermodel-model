@@ -43,7 +43,7 @@ I always say, even I don't wake up looking like Cindy Crawford
 
 The Supermodel approach to modelling provides a structure to the methods of creation and technical formulation of sets of models that both represent specialised datasets and allow them to be integrated. It does this by ensuring that the modelling of the specialised datasets, while implementing custom model elements for their unique content, also reuses model elements from background models and controlled terms from vocabularies and reference datasets, as much as possible.
 
-[.right.text-center]
+[.text-center]
 image::images/gswa-supermodel.svg["GSWA Supermodel",width=75%]
 [.text-center]
 _An informal overview of the https://geological-survey-of-western-australia.github.io/GSWA-Supermodel/[GSWA Supermodel] and its various parts._
@@ -58,7 +58,7 @@ The complete documentation for the GSWA Supermodel https://geological-survey-of-
 
 Say you have two environmental datasets that you want to integrate: *Field Measurements of Trees* and *Aerial Vegetation Heights*. To integrate them, you will need to find as many integration points as possible between them. Clearly _spatial location_ is an easy integration point as imagery and measurements can be located, however we need more than this. We need integration on aspects of the tree & vegetation height information as well, to get commensurate data. For this, we need a model of metrology - measurement science - to tease out the _procedures_ of measurement, the _properties_ of things observed as well as _units of measure_. For this we can use https://www.w3.org/TR/vocab-ssn/[_SOSA_] as a background model as it provides defined relations for these things and indicates how similar and different _procedures_ and so on can be identified.
 
-[.right.text-center]
+[.text-center]
 image::images/integration-points.svg["Demo integration points",width=50%]
 
 Using SOSA, we can record the _Observed Properties_, _Procedures_ and _Results_ of _Observations_ and link individual datasets to different instances of them. Even though the _Procedures_ and other aspects of the data will be different, we've achieved a common data pattern integration point.
@@ -172,11 +172,16 @@ We don't wake up for less than $10,000 a day
 The Model for a Supermodel is summarised as follows:
 
 * all elements of the supermodel are modelled as instances of well-known Semantic Web model classes
-** particular classes are determined by the element's role
-** even when data systems are not implemented as native Semantic Web applications
-* relations between elements are modelled using predicates that indicate dependence or conformance
+* relations between elements are modelled using a fixed set of predicates
 
-In addition to those main points, supermodel elements should be documented with basic annotation predicates such as `schema:name` to indicate an element's name.
+In addition to those main points, supermodel elements should be documented with basic annotation predicates such as `schema:name`.
+
+The figure below shows expected relationships between expected classes.
+
+[.text-center]
+image::images/relationships.svg["Defined relationships between Supermodel element classes ",width=100%]
+[.text-center]
+_Defined relationships between Supermodel element classes_
 
 === Namespaces
 
@@ -186,6 +191,7 @@ Prefixes in the table below for https://en.wikipedia.org/wiki/Internationalized_
 |===
 |Prefix | Namespace | Description
 
+| `sm` | `https://linked.data.gov.au/def/supermodel/` | Supermodel
 | `dcterms` | `http://purl.org/dc/terms/` | Dublin Core Terms
 | `ex` | `http://example.com/` | Generic examples
 | `geo` | `http://www.opengis.net/ont/geosparql#` | OGC GeoSPARQL
@@ -204,7 +210,7 @@ An example prefixed Semantic Web object is the https://www.w3.org/TR/skos-refere
 
 An example of a real supermodel instance - that of https://linked.data.gov.au/org/qsi[Queensland Spatial Information]'s _Queensland Spatial Information Supermodel_ online at https://linked.data.gov.au/def/qsi-supermodel - abbreviated for clarity by hiding the vocabularies and some profile relations, is as follows:
 
-[.right.text-center]
+[.text-center]
 image::images/example-qsi.svg["Queensland Spatial Information's Supermodel",width=75%]
 
 The source data for the image above, in the https://en.wikipedia.org/wiki/Turtle_(syntax)[Turtle] format, is as follows:
@@ -310,16 +316,13 @@ The source data for the image above, in the https://en.wikipedia.org/wiki/Turtle
 
 === Classes
 
+* <<Dataset>>
 * <<Profile>>
 * <<Ontology>>
 * <<Concept Scheme>>
-* <<Dataset>>
-
-==== Profile
-
-Use an instance of `prof:Profile` for the supermodel.
-
-The definition of this class is taken from <<PROF>>.
+* <<Class>>
+* <<Shape>>
+* <<Concept>>
 
 ==== Dataset
 
@@ -336,6 +339,12 @@ The definition of this class is taken from <<SDO>>.
 .
 ----
 
+==== Profile
+
+Use an instance of `prof:Profile` for the supermodel.
+
+The definition of this class is taken from <<PROF>>.
+
 ==== Ontology
 
 Use instances of `owl:Ontology` for elements with the role <<role-model>>.
@@ -348,24 +357,94 @@ Use instances of `skos:ConceptScheme` for elements with the role <<Vocabulary>>.
 
 The definition of this predicate is taken from <<SKOS>>.
 
+==== Class
+
+Use instances of `owl:Class` for class definitions for elements with the role <<Model>>.
+
+The definition of this predicate is taken from <<OWL>>.
+
+==== Shape
+
+Use instances of `sh:Shape` for graph pattern matching elements within resources with the role <<Validator>>.
+
+The definition of this predicate is taken from <<SH>>.
+
+==== Concept
+
+Use instances of `skos:ConceptScheme` for elements with the role <<Vocabulary>>.
+
+The definition of this predicate is taken from <<SKOS>>.
+
 === Predicates
 
-* <<is profile of>>
 * <<conforms to>>
-
-==== is profile of
-
-Use the predicate `prof:isProfileOf` to indicate the dependence of a <<Model>> on another <<Model>>.
-
-Dependence should be indicated whenever one model reuses any elements from another.
-
-The definition of this predicate is taken from <<PROF>>.
+* <<is profile of>>
+* <<pred-member>>
+* <<pred-type>>
+* <<has resource>>
+* <<pred-targets>>
+* <<pred-requires>>
+* <<in scheme>>
 
 ==== conforms to
 
 Use the predicate `dcterms:conformsTo` to indicate that a <<Dataset>> conforms to a <<Model>>.
 
 The definition of this predicate is taken from <<DCTERMS>>.
+
+==== is profile of
+
+Use the predicate `prof:isProfileOf` to indicate the dependence of a <<Profile>> on a <<Model>>.
+
+Dependence should be indicated whenever one model reuses any elements from another.
+
+The definition of this predicate is taken from <<PROF>>.
+
+[[pred-member]]
+==== member
+
+Use the predicate `rdfs:member` to indicate that:
+
+* a <<Class>> or <<Concept>> instance is part of an object with role <<role-dataset>>
+* a <<Class>> is part of an object with role <<role-model>>
+* a <<Shape>> is part of an object with role <<role-validator>>
+
+The definition of this predicate is taken from <<RDFS>>.
+
+[[pred-type]]
+==== type
+
+Use the predicate `rdf:type` to indicate that an object is an instance of a <<Class>>.
+
+The definition of this predicate is taken from <<RDF>>.
+
+==== has resource
+
+Use the predicate `prof:hasResource` to indicate that a <<Profile>> contains an <<Ontology>> or a <<Concept Scheme>>.
+
+The definition of this predicate is taken from <<PROF>>.
+
+[[pred-targets]]
+==== targets
+
+Use the predicate `sm:targets` to indicate that a <<Shape>> constrains a <<Class>>.
+
+NOTE::`sm:targets` is a superproperty of `sh:targetNode`, `sh:targetClass`, `sh:targetSubjectsOf` and `sh:targetObjectsOf`.
+
+The definition of this predicate is taken from this specification.
+
+[[pred-requires]]
+==== requires
+
+Use the predicate `dcterms:requires` to indicate that a <<Shape>> needs a <<Concept>> or a <<Concept Scheme>> in a constraint on a <<Class>>.
+
+The definition of this predicate is taken from <<DCTERMS>>.
+
+==== in scheme
+
+Use the predicate `skos:inScheme` to indicate that a <<Concept>> is within a <<Concept Scheme>>.
+
+The definition of this predicate is taken from <<SKOS>>.
 
 === Validator
 
@@ -432,6 +511,7 @@ The roles are a vocabulary of concepts in this hierarchy:
 * <<role-data>>
 ** <<role-primary-data>>
 ** <<role-reference-data>>
+* <<role-validator>>
 
 [[role-supermodel-definition]]
 ==== Supermodel Definition
@@ -509,6 +589,13 @@ In general in the <<Semantic Web>>, vocabularies are indistinguishable from simp
 See the https://linked.data.gov.au/def/vocpub[VocPub profile] as a model of classification vocabularies that can be folled for supermodels.
 ====
 
+[[role-validator]]
+==== Validator
+
+`https://linked.data.gov.au/def/supermodel/role/validation`
+
+Acting as resource to validate the conformance of <<Dataset, Datasets>> to <<Profile, Profiles>>.
+
 == Demonstrations
 
 [quote, Janice Dickinson (attributed)]
@@ -530,8 +617,18 @@ There are 3 billion women in the world who don't look like supermodels and only 
 [[PROF]]
 [PROF]:: World Wide Web Consortium, _The Profiles Vocabulary_, W3C Working Group Note (18 December 2019). https://www.w3.org/TR/dx-prof/
 
+[[RDF]]
+[RDF]:: World Wide Web Consortium, _RDF 1.1 Concepts and Abstract Syntax_, W3C Recommendation (25 February 2014). http://www.w3.org/TR/rdf11-concepts/
+
+[[RDFS]]
+[RDFS]:: World Wide Web Consortium, _RDF Schema 1.1_, W3C Recommendation (25 February 2014). http://www.w3.org/TR/rdf11-schema/
+
 [[SDO]]
 [PROF]:: schema.org Consortium, _schema.org_, Ontology (14 November 2025). https://schema.org
+
+[[SH]]
+[SH]:: World Wide Web Consortium, _Shapes Constraint Language (SHACL)_, Ontology (20 July 2017). https://www.w3.org/TR/shacl/
+
 
 [[SKOS]]
 [SKOS]:: World Wide Web Consortium, _SKOS Simple Knowledge Organization System Reference_, W3C Working Group Note (19 August 2009). https://www.w3.org/TR/skos-reference/
