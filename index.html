@@ -589,7 +589,7 @@ I always say, even I don&#8217;t wake up looking like Cindy Crawford
 <div class="paragraph">
 <p>The Supermodel approach to modelling provides a structure to the methods of creation and technical formulation of sets of models that both represent specialised datasets and allow them to be integrated. It does this by ensuring that the modelling of the specialised datasets, while implementing custom model elements for their unique content, also reuses model elements from background models and controlled terms from vocabularies and reference datasets, as much as possible.</p>
 </div>
-<div class="imageblock right text-center">
+<div class="imageblock text-center">
 <div class="content">
 <img src="images/gswa-supermodel.svg" alt="GSWA Supermodel" width="75%">
 </div>
@@ -611,7 +611,7 @@ I always say, even I don&#8217;t wake up looking like Cindy Crawford
 <div class="paragraph">
 <p>Say you have two environmental datasets that you want to integrate: <strong>Field Measurements of Trees</strong> and <strong>Aerial Vegetation Heights</strong>. To integrate them, you will need to find as many integration points as possible between them. Clearly <em>spatial location</em> is an easy integration point as imagery and measurements can be located, however we need more than this. We need integration on aspects of the tree &amp; vegetation height information as well, to get commensurate data. For this, we need a model of metrology - measurement science - to tease out the <em>procedures</em> of measurement, the <em>properties</em> of things observed as well as <em>units of measure</em>. For this we can use <a href="https://www.w3.org/TR/vocab-ssn/"><em>SOSA</em></a> as a background model as it provides defined relations for these things and indicates how similar and different <em>procedures</em> and so on can be identified.</p>
 </div>
-<div class="imageblock right text-center">
+<div class="imageblock text-center">
 <div class="content">
 <img src="images/integration-points.svg" alt="Demo integration points" width="50%">
 </div>
@@ -878,24 +878,25 @@ We don&#8217;t wake up for less than $10,000 a day
 <ul>
 <li>
 <p>all elements of the supermodel are modelled as instances of well-known Semantic Web model classes</p>
-<div class="ulist">
-<ul>
-<li>
-<p>particular classes are determined by the element&#8217;s role</p>
 </li>
 <li>
-<p>even when data systems are not implemented as native Semantic Web applications</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>relations between elements are modelled using predicates that indicate dependence or conformance</p>
+<p>relations between elements are modelled using a fixed set of predicates</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>In addition to those main points, supermodel elements should be documented with basic annotation predicates such as <code>schema:name</code> to indicate an element&#8217;s name.</p>
+<p>In addition to those main points, supermodel elements should be documented with basic annotation predicates such as <code>schema:name</code>.</p>
+</div>
+<div class="paragraph">
+<p>The figure below shows expected relationships between expected classes.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/relationships.svg" alt="Defined relationships between Supermodel element classes " width="100%">
+</div>
+</div>
+<div class="paragraph text-center">
+<p><em>Defined relationships between Supermodel element classes</em></p>
 </div>
 </div>
 <div class="sect2">
@@ -917,6 +918,11 @@ We don&#8217;t wake up for less than $10,000 a day
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sm</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://linked.data.gov.au/def/supermodel/" class="bare">https://linked.data.gov.au/def/supermodel/</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Supermodel</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>dcterms</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="http://purl.org/dc/terms/" class="bare">http://purl.org/dc/terms/</a></code></p></td>
@@ -978,7 +984,7 @@ We don&#8217;t wake up for less than $10,000 a day
 <div class="paragraph">
 <p>An example of a real supermodel instance - that of <a href="https://linked.data.gov.au/org/qsi">Queensland Spatial Information</a>'s <em>Queensland Spatial Information Supermodel</em> online at <a href="https://linked.data.gov.au/def/qsi-supermodel" class="bare">https://linked.data.gov.au/def/qsi-supermodel</a> - abbreviated for clarity by hiding the vocabularies and some profile relations, is as follows:</p>
 </div>
-<div class="imageblock right text-center">
+<div class="imageblock text-center">
 <div class="content">
 <img src="images/example-qsi.svg" alt="Queensland Spatial Information&#8217;s Supermodel" width="75%">
 </div>
@@ -1091,6 +1097,9 @@ We don&#8217;t wake up for less than $10,000 a day
 <div class="ulist">
 <ul>
 <li>
+<p><a href="#_dataset">Dataset</a></p>
+</li>
+<li>
 <p><a href="#_profile">Profile</a></p>
 </li>
 <li>
@@ -1100,18 +1109,15 @@ We don&#8217;t wake up for less than $10,000 a day
 <p><a href="#_concept_scheme">Concept Scheme</a></p>
 </li>
 <li>
-<p><a href="#_dataset">Dataset</a></p>
+<p><a href="#_class">Class</a></p>
+</li>
+<li>
+<p><a href="#_shape">Shape</a></p>
+</li>
+<li>
+<p><a href="#_concept">Concept</a></p>
 </li>
 </ul>
-</div>
-<div class="sect3">
-<h4 id="_profile">Profile</h4>
-<div class="paragraph">
-<p>Use an instance of <code>prof:Profile</code> for the supermodel.</p>
-</div>
-<div class="paragraph">
-<p>The definition of this class is taken from <a href="#PROF">[PROF]</a>.</p>
-</div>
 </div>
 <div class="sect3">
 <h4 id="_dataset">Dataset</h4>
@@ -1132,6 +1138,15 @@ We don&#8217;t wake up for less than $10,000 a day
 </div>
 </div>
 <div class="sect3">
+<h4 id="_profile">Profile</h4>
+<div class="paragraph">
+<p>Use an instance of <code>prof:Profile</code> for the supermodel.</p>
+</div>
+<div class="paragraph">
+<p>The definition of this class is taken from <a href="#PROF">[PROF]</a>.</p>
+</div>
+</div>
+<div class="sect3">
 <h4 id="_ontology">Ontology</h4>
 <div class="paragraph">
 <p>Use instances of <code>owl:Ontology</code> for elements with the role <a href="#role-model">Model</a>.</p>
@@ -1149,23 +1164,77 @@ We don&#8217;t wake up for less than $10,000 a day
 <p>The definition of this predicate is taken from <a href="#SKOS">[SKOS]</a>.</p>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_class">Class</h4>
+<div class="paragraph">
+<p>Use instances of <code>owl:Class</code> for class definitions for elements with the role <a href="#_model">Model</a>.</p>
+</div>
+<div class="paragraph">
+<p>The definition of this predicate is taken from <a href="#OWL">[OWL]</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_shape">Shape</h4>
+<div class="paragraph">
+<p>Use instances of <code>sh:Shape</code> for graph pattern matching elements within resources with the role <a href="#_validator">Validator</a>.</p>
+</div>
+<div class="paragraph">
+<p>The definition of this predicate is taken from <a href="#SH">[SH]</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_concept">Concept</h4>
+<div class="paragraph">
+<p>Use instances of <code>skos:ConceptScheme</code> for elements with the role <a href="#role-vocabulary">Vocabulary</a>.</p>
+</div>
+<div class="paragraph">
+<p>The definition of this predicate is taken from <a href="#SKOS">[SKOS]</a>.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_predicates">Predicates</h3>
 <div class="ulist">
 <ul>
 <li>
+<p><a href="#_conforms_to">conforms to</a></p>
+</li>
+<li>
 <p><a href="#_is_profile_of">is profile of</a></p>
 </li>
 <li>
-<p><a href="#_conforms_to">conforms to</a></p>
+<p><a href="#pred-member">member</a></p>
+</li>
+<li>
+<p><a href="#pred-type">type</a></p>
+</li>
+<li>
+<p><a href="#_has_resource">has resource</a></p>
+</li>
+<li>
+<p><a href="#pred-targets">targets</a></p>
+</li>
+<li>
+<p><a href="#pred-requires">requires</a></p>
+</li>
+<li>
+<p><a href="#_in_scheme">in scheme</a></p>
 </li>
 </ul>
 </div>
 <div class="sect3">
+<h4 id="_conforms_to">conforms to</h4>
+<div class="paragraph">
+<p>Use the predicate <code>dcterms:conformsTo</code> to indicate that a <a href="#_dataset">Dataset</a> conforms to a <a href="#_model">Model</a>.</p>
+</div>
+<div class="paragraph">
+<p>The definition of this predicate is taken from <a href="#DCTERMS">[DCTERMS]</a>.</p>
+</div>
+</div>
+<div class="sect3">
 <h4 id="_is_profile_of">is profile of</h4>
 <div class="paragraph">
-<p>Use the predicate <code>prof:isProfileOf</code> to indicate the dependence of a <a href="#_model">Model</a> on another <a href="#_model">Model</a>.</p>
+<p>Use the predicate <code>prof:isProfileOf</code> to indicate the dependence of a <a href="#_profile">Profile</a> on a <a href="#_model">Model</a>.</p>
 </div>
 <div class="paragraph">
 <p>Dependence should be indicated whenever one model reuses any elements from another.</p>
@@ -1175,12 +1244,73 @@ We don&#8217;t wake up for less than $10,000 a day
 </div>
 </div>
 <div class="sect3">
-<h4 id="_conforms_to">conforms to</h4>
+<h4 id="pred-member">member</h4>
 <div class="paragraph">
-<p>Use the predicate <code>dcterms:conformsTo</code> to indicate that a <a href="#_dataset">Dataset</a> conforms to a <a href="#_model">Model</a>.</p>
+<p>Use the predicate <code>rdfs:member</code> to indicate that:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a <a href="#_class">Class</a> or <a href="#_concept">Concept</a> instance is part of an object with role <a href="#role-dataset">Dataset</a></p>
+</li>
+<li>
+<p>a <a href="#_class">Class</a> is part of an object with role <a href="#role-model">Model</a></p>
+</li>
+<li>
+<p>a <a href="#_shape">Shape</a> is part of an object with role <a href="#role-validator">Validator</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The definition of this predicate is taken from <a href="#RDFS">[RDFS]</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="pred-type">type</h4>
+<div class="paragraph">
+<p>Use the predicate <code>rdf:type</code> to indicate that an object is an instance of a <a href="#_class">Class</a>.</p>
+</div>
+<div class="paragraph">
+<p>The definition of this predicate is taken from <a href="#RDF">[RDF]</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_has_resource">has resource</h4>
+<div class="paragraph">
+<p>Use the predicate <code>prof:hasResource</code> to indicate that a <a href="#_profile">Profile</a> contains an <a href="#_ontology">Ontology</a> or a <a href="#_concept_scheme">Concept Scheme</a>.</p>
+</div>
+<div class="paragraph">
+<p>The definition of this predicate is taken from <a href="#PROF">[PROF]</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="pred-targets">targets</h4>
+<div class="paragraph">
+<p>Use the predicate <code>sm:targets</code> to indicate that a <a href="#_shape">Shape</a> constrains a <a href="#_class">Class</a>.</p>
+</div>
+<div class="paragraph">
+<p>NOTE::`sm:targets` is a superproperty of <code>sh:targetNode</code>, <code>sh:targetClass</code>, <code>sh:targetSubjectsOf</code> and <code>sh:targetObjectsOf</code>.</p>
+</div>
+<div class="paragraph">
+<p>The definition of this predicate is taken from this specification.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="pred-requires">requires</h4>
+<div class="paragraph">
+<p>Use the predicate <code>dcterms:requires</code> to indicate that a <a href="#_shape">Shape</a> needs a <a href="#_concept">Concept</a> or a <a href="#_concept_scheme">Concept Scheme</a> in a constraint on a <a href="#_class">Class</a>.</p>
 </div>
 <div class="paragraph">
 <p>The definition of this predicate is taken from <a href="#DCTERMS">[DCTERMS]</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_in_scheme">in scheme</h4>
+<div class="paragraph">
+<p>Use the predicate <code>skos:inScheme</code> to indicate that a <a href="#_concept">Concept</a> is within a <a href="#_concept_scheme">Concept Scheme</a>.</p>
+</div>
+<div class="paragraph">
+<p>The definition of this predicate is taken from <a href="#SKOS">[SKOS]</a>.</p>
 </div>
 </div>
 </div>
@@ -1248,6 +1378,9 @@ We don&#8217;t wake up for less than $10,000 a day
 </li>
 </ul>
 </div>
+</li>
+<li>
+<p><a href="#role-validator">Validator</a></p>
 </li>
 </ul>
 </div>
@@ -1351,6 +1484,15 @@ We don&#8217;t wake up for less than $10,000 a day
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="role-validator">Validator</h4>
+<div class="paragraph">
+<p><code><a href="https://linked.data.gov.au/def/supermodel/role/validation" class="bare">https://linked.data.gov.au/def/supermodel/role/validation</a></code></p>
+</div>
+<div class="paragraph">
+<p>Acting as resource to validate the conformance of <a href="#_dataset">Datasets</a> to <a href="#_profile">Profiles</a>.</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1410,11 +1552,35 @@ There are 3 billion women in the world who don&#8217;t look like supermodels and
 </dd>
 </dl>
 </div>
+<div id="RDF" class="dlist">
+<dl>
+<dt class="hdlist1">[RDF]</dt>
+<dd>
+<p>World Wide Web Consortium, <em>RDF 1.1 Concepts and Abstract Syntax</em>, W3C Recommendation (25 February 2014). <a href="http://www.w3.org/TR/rdf11-concepts/" class="bare">http://www.w3.org/TR/rdf11-concepts/</a></p>
+</dd>
+</dl>
+</div>
+<div id="RDFS" class="dlist">
+<dl>
+<dt class="hdlist1">[RDFS]</dt>
+<dd>
+<p>World Wide Web Consortium, <em>RDF Schema 1.1</em>, W3C Recommendation (25 February 2014). <a href="http://www.w3.org/TR/rdf11-schema/" class="bare">http://www.w3.org/TR/rdf11-schema/</a></p>
+</dd>
+</dl>
+</div>
 <div id="SDO" class="dlist">
 <dl>
 <dt class="hdlist1">[PROF]</dt>
 <dd>
 <p>schema.org Consortium, <em>schema.org</em>, Ontology (14 November 2025). <a href="https://schema.org" class="bare">https://schema.org</a></p>
+</dd>
+</dl>
+</div>
+<div id="SH" class="dlist">
+<dl>
+<dt class="hdlist1">[SH]</dt>
+<dd>
+<p>World Wide Web Consortium, <em>Shapes Constraint Language (SHACL)</em>, Ontology (20 July 2017). <a href="https://www.w3.org/TR/shacl/" class="bare">https://www.w3.org/TR/shacl/</a></p>
 </dd>
 </dl>
 </div>
@@ -1431,7 +1597,7 @@ There are 3 billion women in the world who don&#8217;t look like supermodels and
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-11-20 16:49:42 UTC
+Last updated 2025-11-25 06:20:26 UTC
 </div>
 </div>
 </body>
