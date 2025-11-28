@@ -454,7 +454,7 @@ With this model is supplied a validator that can be used to test conformance cla
 
 Tools such as https://shacl-playground.zazuko.com/[Zazuko's SHACL Playground] or https://tools.kurrawong.ai/validate[KurrawongAI's SHACL Validator] can be used with the validator file above to test supermodel data online or the https://pypi.org/project/pyshacl[pySHACL] package can be used to validate data within Python code.
 
-=== Roles
+== Roles
 
 These are the roles that elements within a supermodels can play. They cannot be interpreted as classes of object because roles for datasets, models and so on may vary between supermodel instances and thus are not an eternal type for that object.
 
@@ -476,28 +476,32 @@ The roles are a vocabulary of concepts in this hierarchy:
 This roles vocabulary is available in RDF at https://linked.data.gov.au/def/supermodel/roles.ttl.
 
 [[role-dataset]]
-==== Dataset
+[discrete]
+=== Dataset
 
 `https://linked.data.gov.au/def/supermodel/roles/dataset`
 
 Acting as a managed aggregation of foreground or reference <<Data>>.
 
 [[role-foreground-dataset]]
-==== Foreground Dataset
+[discrete]
+=== Foreground Dataset
 
 `https://linked.data.gov.au/def/supermodel/roles/foreground-dataset`
 
 Acting as a collection of foreground <<Data>>.
 
 [[role-reference-dataset]]
-==== Reference Dataset
+[discrete]
+=== Reference Dataset
 
 `https://linked.data.gov.au/def/supermodel/roles/reference-dataset`
 
 Acting as a <<Dataset>> that is used as an integration point by one or more <<Dataset, Datasets>>.
 
 [[role-vocabulary]]
-==== Vocabulary
+[discrete]
+=== Vocabulary
 
 `https://linked.data.gov.au/def/supermodel/roles/vocabulary`
 
@@ -513,21 +517,24 @@ See the https://linked.data.gov.au/def/vocpub[VocPub profile] as a model of clas
 ====
 
 [[role-model]]
-==== Model
+[discrete]
+=== Model
 
 `https://linked.data.gov.au/def/supermodel/roles/model`
 
 Acting as an abstract information object that organises elements of data and standardises how they relate to one another and to the properties of real-world entities.
 
 [[role-supermodel-definition]]
-==== Supermodel Definition
+[discrete]
+=== Supermodel Definition
 
 `https://linked.data.gov.au/def/supermodel/roles/supermodel-definition`
 
 Acting as the definitional object of the Supermodel and container of all its elements.
 
 [[role-foreground-model]]
-==== Foreground Model
+[discrete]
+=== Foreground Model
 
 `https://linked.data.gov.au/def/supermodel/roles/foreground-model`
 
@@ -536,7 +543,8 @@ Acting as a <<Model>> for a <<Dataset>> of <<Foreground Data>>.
 This is a child term of <<Model>>.
 
 [[role-background-model]]
-==== Background Model
+[discrete]
+=== Background Model
 
 `https://linked.data.gov.au/def/supermodel/roles/background-model`
 
@@ -545,7 +553,8 @@ Acting as a <<Model>> for a <<Dataset>> of <<Reference Dataset>>.
 This is a child term of <<Model>>.
 
 [[role-validator]]
-==== Validator
+[discrete]
+=== Validator
 
 `https://linked.data.gov.au/def/supermodel/roles/validation`
 
@@ -554,21 +563,24 @@ Acting as resource to validate the conformance of <<Dataset, Datasets>> to <<Pro
 This is a child term of <<Model>>.
 
 [[role-data]]
-==== Data
+[discrete]
+=== Data
 
 `https://linked.data.gov.au/def/supermodel/roles/data`
 
 Acting as a collection of discrete or continuous values that convey information, describing the quantity, quality, fact, statistics, other basic units of meaning.
 
 [[role-foreground-data]]
-==== Foreground Data
+[discrete]
+=== Foreground Data
 
 `https://linked.data.gov.au/def/supermodel/roles/foreground-data`
 
 Acting as <<Data>> that is the main subject of the supermodel that may or may not also be used as <<role-reference-data>>.
 
 [[role-reference-data]]
-==== Reference Data
+[discrete]
+=== Reference Data
 
 `https://linked.data.gov.au/def/supermodel/roles/reference-data`
 
