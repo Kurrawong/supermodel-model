@@ -598,7 +598,7 @@ I always say, even I don&#8217;t wake up looking like Cindy Crawford
 <p><em>An informal overview of the <a href="https://geological-survey-of-western-australia.github.io/GSWA-Supermodel/">GSWA Supermodel</a> and its various parts.</em></p>
 </div>
 <div class="paragraph">
-<p>The figure above shows the parts of the <a href="https://www.wa.gov.au/organisation/department-of-mines-petroleum-and-exploration/geological-survey-of-western-australia">Geological Survey of Western Australia</a>'s Supermodel of their geological and resource sector regulation data. It shows models for specialised geological datasets such as <em>Boreholes</em>, <em>Samples</em> and <em>Mining Authorisation</em> as well as more generic <em>Background Models</em> such as <a href="https://www.w3.org/TR/vocab-ssn/"><em>SOSA</em></a> (for observations and measurements), <a href="http://www.opengis.net/doc/IS/geosparql/1.1"><em>GeoSPARQL</em></a> (sor spatial features) and so on. It also indicates some of the vocabularies of controlled terms used by both <em>Component</em> and <em>Background Models</em>, such as <em>Minerals</em> and <em>Commodities</em>.</p>
+<p>The figure above shows the parts of the <a href="https://www.wa.gov.au/organisation/department-of-mines-petroleum-and-exploration/geological-survey-of-western-australia">Geological Survey of Western Australia</a>'s Supermodel of their geological and resource sector regulation data. It shows models for specialised geological datasets such as <em>Boreholes</em>, <em>Samples</em> and <em>Mining Authorisation</em> as well as more generic <em>Background Models</em> such as <a href="https://www.w3.org/TR/vocab-ssn/"><em>SOSA</em></a> (for observations and measurements), <a href="http://www.opengis.net/doc/IS/geosparql/1.1"><em>GeoSPARQL</em></a> (sor spatial features) and so on. It also indicates some of the vocabularies of controlled terms used by both <em>Foreground</em> and <em>Background Models</em>, such as <em>Minerals</em> and <em>Commodities</em>.</p>
 </div>
 <div class="paragraph">
 <p>The complete documentation for the GSWA Supermodel <a href="https://geological-survey-of-western-australia.github.io/GSWA-Supermodel/">is online</a>.</p>
@@ -648,7 +648,7 @@ I always say, even I don&#8217;t wake up looking like Cindy Crawford
 <div class="sect2">
 <h3 id="_model_roles">Model Roles</h3>
 <div class="paragraph">
-<p>One aspect of formal supermodel element descriptions are the roles that elements play within a supermodel scope. Particular models may be for the representation of the data within datasets to be integrated are called - <em>Component Model</em> role - or they may be used by other models as reference - <em>Background Model</em> role - or perhaps both (see the GSWA overview figure at the top).</p>
+<p>One aspect of formal supermodel element descriptions are the roles that elements play within a supermodel scope. Particular models may be for the representation of the data within datasets to be integrated are called - <em>Foreground Model</em> role - or they may be used by other models as reference - <em>Background Model</em> role - or perhaps both (see the GSWA overview figure at the top).</p>
 </div>
 <div class="paragraph">
 <p>The roles for supermodel elements are indicated in the formal modelling of it, as per the <a href="#_model">Model</a> section below, and the roles themselves are details in the <a href="#_roles">Roles</a> section.</p>
@@ -672,7 +672,7 @@ I always say, even I don&#8217;t wake up looking like Cindy Crawford
 <div class="ulist">
 <ul>
 <li>
-<p>assume one will be implemented unless all elements of the model can be modelled using <a href="#role-background-model">Background Models</a> or other Dataset&#8217;s Component Models</p>
+<p>assume one will be implemented unless all elements of the model can be modelled using <a href="#role-background-model">Background Models</a> or other Dataset&#8217;s Foreground Models</p>
 </li>
 </ul>
 </div>
@@ -692,7 +692,7 @@ I always say, even I don&#8217;t wake up looking like Cindy Crawford
 <div class="ulist">
 <ul>
 <li>
-<p>within the Component Models. Taken from general-purpose models</p>
+<p>within the Foreground Models. Taken from general-purpose models</p>
 </li>
 </ul>
 </div>
@@ -702,7 +702,7 @@ I always say, even I don&#8217;t wake up looking like Cindy Crawford
 <div class="ulist">
 <ul>
 <li>
-<p>as <a href="#role-background-model">Background Model</a>, for those used for modelling patterns used in Component Models</p>
+<p>as <a href="#role-background-model">Background Model</a>, for those used for modelling patterns used in Foreground Models</p>
 </li>
 </ul>
 </div>
@@ -712,7 +712,7 @@ I always say, even I don&#8217;t wake up looking like Cindy Crawford
 <div class="ulist">
 <ul>
 <li>
-<p>the dependence of Component Models on Background Models, roles and so on, as per the <a href="#_model">Model</a> section</p>
+<p>the dependence of Foreground Models on Background Models, roles and so on, as per the <a href="#_model">Model</a> section</p>
 </li>
 </ul>
 </div>
@@ -761,7 +761,7 @@ I always say, even I don&#8217;t wake up looking like Cindy Crawford
 <p>For each dataset, a formal and separate model must be either created or borrowed.</p>
 </div>
 <div class="paragraph">
-<p>Assume that each dataset will have a Component Model, but expect and aim to deprecate any you can for shared models and Background Model reuse as this leads to better integration.</p>
+<p>Assume that each dataset will have a Foreground Model, but expect and aim to deprecate any you can for shared models and Background Model reuse as this leads to better integration.</p>
 </div>
 </div>
 <div class="sect2">
@@ -844,7 +844,7 @@ I always say, even I don&#8217;t wake up looking like Cindy Crawford
 <div class="sect2">
 <h3 id="_5_identify_general_purpose_models">5. Identify general-purpose models</h3>
 <div class="paragraph">
-<p>All general purpose models that have had their whole or parts reused by Component Models must be included as <a href="#role-background-model">Background Models</a> within the supermodel.</p>
+<p>All general purpose models that have had their whole or parts reused by Foreground Models must be included as <a href="#role-background-model">Background Models</a> within the supermodel.</p>
 </div>
 </div>
 <div class="sect2">
@@ -853,7 +853,7 @@ I always say, even I don&#8217;t wake up looking like Cindy Crawford
 <p>Once the above steps have been carried out, a formal description of the supermodel must be made, according to the <a href="#_model">Model</a> below.</p>
 </div>
 <div class="paragraph">
-<p>This means defining a <code>Supermodel</code> object, all the Component &amp; Background Models and Vocabularies within it, as well as each&#8217;s role and relations between them.</p>
+<p>This means defining a <code>Supermodel</code> object, all the Foreground &amp; Background Models and Vocabularies within it, as well as each&#8217;s role and relations between them.</p>
 </div>
 </div>
 </div>
@@ -1341,20 +1341,14 @@ We don&#8217;t wake up for less than $10,000 a day
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#role-supermodel-definition">Supermodel Definition</a></p>
-</li>
-<li>
 <p><a href="#role-dataset">Dataset</a></p>
-</li>
-<li>
-<p><a href="#role-model">Model</a></p>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#role-component-model">Component Model</a></p>
+<p><a href="#role-foreground-dataset">Foreground Dataset</a></p>
 </li>
 <li>
-<p><a href="#role-reference-data">Reference Data</a></p>
+<p><a href="#role-reference-dataset">Reference Dataset</a></p>
 <div class="ulist">
 <ul>
 <li>
@@ -1367,11 +1361,30 @@ We don&#8217;t wake up for less than $10,000 a day
 </div>
 </li>
 <li>
+<p><a href="#role-model">Model</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#role-supermodel-definition">Supermodel Definition</a></p>
+</li>
+<li>
+<p><a href="#role-foreground-model">Foreground Model</a></p>
+</li>
+<li>
+<p><a href="#role-background-model">Background Model</a></p>
+</li>
+<li>
+<p><a href="#role-validator">Validator</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
 <p><a href="#role-data">Data</a></p>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#role-primary-data">Primary Data</a></p>
+<p><a href="#role-foreground-data">Foreground Data</a></p>
 </li>
 <li>
 <p><a href="#role-reference-data">Reference Data</a></p>
@@ -1379,99 +1392,48 @@ We don&#8217;t wake up for less than $10,000 a day
 </ul>
 </div>
 </li>
-<li>
-<p><a href="#role-validator">Validator</a></p>
-</li>
 </ul>
 </div>
-<div class="sect3">
-<h4 id="role-supermodel-definition">Supermodel Definition</h4>
 <div class="paragraph">
-<p><code><a href="https://linked.data.gov.au/def/supermodel/role/supermodel-definition" class="bare">https://linked.data.gov.au/def/supermodel/role/supermodel-definition</a></code></p>
-</div>
-<div class="paragraph">
-<p>Acting as the definitional object of the Supermodel and container of all its elements.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="role-data">Data</h4>
-<div class="paragraph">
-<p><code><a href="https://linked.data.gov.au/def/supermodel/role/data" class="bare">https://linked.data.gov.au/def/supermodel/role/data</a></code></p>
-</div>
-<div class="paragraph">
-<p>Acting as a collection of discrete or continuous values that convey information, describing the quantity, quality, fact, statistics, other basic units of meaning.</p>
-</div>
+<p>This roles vocabulary is available in RDF at <a href="https://linked.data.gov.au/def/supermodel/roles.ttl" class="bare">https://linked.data.gov.au/def/supermodel/roles.ttl</a>.</p>
 </div>
 <div class="sect3">
 <h4 id="role-dataset">Dataset</h4>
 <div class="paragraph">
-<p><code><a href="https://linked.data.gov.au/def/supermodel/role/dataset" class="bare">https://linked.data.gov.au/def/supermodel/role/dataset</a></code></p>
+<p><code><a href="https://linked.data.gov.au/def/supermodel/roles/dataset" class="bare">https://linked.data.gov.au/def/supermodel/roles/dataset</a></code></p>
 </div>
 <div class="paragraph">
-<p>Acting as a collection of primary or reference <a href="#role-data">Data</a>.</p>
+<p>Acting as a managed aggregation of foreground or reference <a href="#role-data">Data</a>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="role-component-model">Component Model</h4>
+<h4 id="role-foreground-dataset">Foreground Dataset</h4>
 <div class="paragraph">
-<p><code><a href="https://linked.data.gov.au/def/supermodel/role/component-model" class="bare">https://linked.data.gov.au/def/supermodel/role/component-model</a></code></p>
+<p><code><a href="https://linked.data.gov.au/def/supermodel/roles/foreground-dataset" class="bare">https://linked.data.gov.au/def/supermodel/roles/foreground-dataset</a></code></p>
 </div>
 <div class="paragraph">
-<p>Acting as a <a href="#_model">Model</a> for a <a href="#_dataset">Dataset</a> of <a href="#role-primary-data">Primary Data</a>.</p>
-</div>
-<div class="paragraph">
-<p>This is a child term of <a href="#role-reference-data">Reference Data</a>.</p>
+<p>Acting as a collection of foreground <a href="#role-data">Data</a>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="role-background-model">Background Model</h4>
+<h4 id="role-reference-dataset">Reference Dataset</h4>
 <div class="paragraph">
-<p><code><a href="https://linked.data.gov.au/def/supermodel/role/background-model" class="bare">https://linked.data.gov.au/def/supermodel/role/background-model</a></code></p>
-</div>
-<div class="paragraph">
-<p>Acting as a <a href="#_model">Model</a> for a <a href="#_dataset">Dataset</a> of <a href="#role-reference-data">Reference Data</a>.</p>
+<p><code><a href="https://linked.data.gov.au/def/supermodel/roles/reference-dataset" class="bare">https://linked.data.gov.au/def/supermodel/roles/reference-dataset</a></code></p>
 </div>
 <div class="paragraph">
-<p>This is a child term of <a href="#role-reference-data">Reference Data</a>.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="role-model">Model</h4>
-<div class="paragraph">
-<p><code><a href="https://linked.data.gov.au/def/supermodel/role/model" class="bare">https://linked.data.gov.au/def/supermodel/role/model</a></code></p>
-</div>
-<div class="paragraph">
-<p>Acting as an abstract information object that organises elements of data and standardises how they relate to one another and to the properties of real-world entities.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="role-primary-data">Primary Data</h4>
-<div class="paragraph">
-<p><code><a href="https://linked.data.gov.au/def/supermodel/role/primary-data" class="bare">https://linked.data.gov.au/def/supermodel/role/primary-data</a></code></p>
-</div>
-<div class="paragraph">
-<p>Acting as <a href="#role-data">Data</a> that is the main subject of the supermodel that may or may not be used as <a href="#role-reference-data">Reference Data</a> also.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="role-reference-data">Reference Data</h4>
-<div class="paragraph">
-<p><code><a href="https://linked.data.gov.au/def/supermodel/role/reference-data" class="bare">https://linked.data.gov.au/def/supermodel/role/reference-data</a></code></p>
-</div>
-<div class="paragraph">
-<p>Acting as <a href="#role-data">Data</a> that is used as an integration point by one or more <a href="#_dataset">Datasets</a>.</p>
+<p>Acting as a <a href="#_dataset">Dataset</a> that is used as an integration point by one or more <a href="#_dataset">Datasets</a>.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="role-vocabulary">Vocabulary</h4>
 <div class="paragraph">
-<p><code><a href="https://linked.data.gov.au/def/supermodel/role/vocabulary" class="bare">https://linked.data.gov.au/def/supermodel/role/vocabulary</a></code></p>
+<p><code><a href="https://linked.data.gov.au/def/supermodel/roles/vocabulary" class="bare">https://linked.data.gov.au/def/supermodel/roles/vocabulary</a></code></p>
 </div>
 <div class="paragraph">
-<p>Acting as a controlled collection of terms, usually with a hierarchy but sometimes just a list, used as <a href="#role-reference-data">Reference Data</a> by <a href="#_dataset">Datasets</a>.</p>
+<p>Acting as a controlled collection of terms, usually with a hierarchy but sometimes just a list, used as <a href="#role-reference-dataset">Reference Dataset</a> by <a href="#_dataset">Datasets</a>.</p>
 </div>
 <div class="paragraph">
-<p>This is a child term of <a href="#role-reference-data">Reference Data</a>.</p>
+<p>This is a child term of <a href="#role-reference-dataset">Reference Dataset</a>.</p>
 </div>
 <div id="NOTE" class="exampleblock">
 <div class="content">
@@ -1485,12 +1447,84 @@ We don&#8217;t wake up for less than $10,000 a day
 </div>
 </div>
 <div class="sect3">
+<h4 id="role-model">Model</h4>
+<div class="paragraph">
+<p><code><a href="https://linked.data.gov.au/def/supermodel/roles/model" class="bare">https://linked.data.gov.au/def/supermodel/roles/model</a></code></p>
+</div>
+<div class="paragraph">
+<p>Acting as an abstract information object that organises elements of data and standardises how they relate to one another and to the properties of real-world entities.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="role-supermodel-definition">Supermodel Definition</h4>
+<div class="paragraph">
+<p><code><a href="https://linked.data.gov.au/def/supermodel/roles/supermodel-definition" class="bare">https://linked.data.gov.au/def/supermodel/roles/supermodel-definition</a></code></p>
+</div>
+<div class="paragraph">
+<p>Acting as the definitional object of the Supermodel and container of all its elements.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="role-foreground-model">Foreground Model</h4>
+<div class="paragraph">
+<p><code><a href="https://linked.data.gov.au/def/supermodel/roles/foreground-model" class="bare">https://linked.data.gov.au/def/supermodel/roles/foreground-model</a></code></p>
+</div>
+<div class="paragraph">
+<p>Acting as a <a href="#_model">Model</a> for a <a href="#_dataset">Dataset</a> of <a href="#role-foreground-data">Foreground Data</a>.</p>
+</div>
+<div class="paragraph">
+<p>This is a child term of <a href="#_model">Model</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="role-background-model">Background Model</h4>
+<div class="paragraph">
+<p><code><a href="https://linked.data.gov.au/def/supermodel/roles/background-model" class="bare">https://linked.data.gov.au/def/supermodel/roles/background-model</a></code></p>
+</div>
+<div class="paragraph">
+<p>Acting as a <a href="#_model">Model</a> for a <a href="#_dataset">Dataset</a> of <a href="#role-reference-dataset">Reference Dataset</a>.</p>
+</div>
+<div class="paragraph">
+<p>This is a child term of <a href="#_model">Model</a>.</p>
+</div>
+</div>
+<div class="sect3">
 <h4 id="role-validator">Validator</h4>
 <div class="paragraph">
-<p><code><a href="https://linked.data.gov.au/def/supermodel/role/validation" class="bare">https://linked.data.gov.au/def/supermodel/role/validation</a></code></p>
+<p><code><a href="https://linked.data.gov.au/def/supermodel/roles/validation" class="bare">https://linked.data.gov.au/def/supermodel/roles/validation</a></code></p>
 </div>
 <div class="paragraph">
 <p>Acting as resource to validate the conformance of <a href="#_dataset">Datasets</a> to <a href="#_profile">Profiles</a>.</p>
+</div>
+<div class="paragraph">
+<p>This is a child term of <a href="#_model">Model</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="role-data">Data</h4>
+<div class="paragraph">
+<p><code><a href="https://linked.data.gov.au/def/supermodel/roles/data" class="bare">https://linked.data.gov.au/def/supermodel/roles/data</a></code></p>
+</div>
+<div class="paragraph">
+<p>Acting as a collection of discrete or continuous values that convey information, describing the quantity, quality, fact, statistics, other basic units of meaning.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="role-foreground-data">Foreground Data</h4>
+<div class="paragraph">
+<p><code><a href="https://linked.data.gov.au/def/supermodel/roles/foreground-data" class="bare">https://linked.data.gov.au/def/supermodel/roles/foreground-data</a></code></p>
+</div>
+<div class="paragraph">
+<p>Acting as <a href="#role-data">Data</a> that is the main subject of the supermodel that may or may not also be used as <a href="#role-reference-data">Reference Data</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="role-reference-data">Reference Data</h4>
+<div class="paragraph">
+<p><code><a href="https://linked.data.gov.au/def/supermodel/roles/reference-data" class="bare">https://linked.data.gov.au/def/supermodel/roles/reference-data</a></code></p>
+</div>
+<div class="paragraph">
+<p>Acting as <a href="#role-data">Data</a> that is not the main subject of the supermodel but is linked to by such data.</p>
 </div>
 </div>
 </div>
@@ -1597,7 +1631,7 @@ There are 3 billion women in the world who don&#8217;t look like supermodels and
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-11-25 06:20:26 UTC
+Last updated 2025-11-28 07:01:45 UTC
 </div>
 </div>
 </body>
