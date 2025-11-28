@@ -48,7 +48,7 @@ image::images/gswa-supermodel.svg["GSWA Supermodel",width=75%]
 [.text-center]
 _An informal overview of the https://geological-survey-of-western-australia.github.io/GSWA-Supermodel/[GSWA Supermodel] and its various parts._
 
-The figure above shows the parts of the https://www.wa.gov.au/organisation/department-of-mines-petroleum-and-exploration/geological-survey-of-western-australia[Geological Survey of Western Australia]'s Supermodel of their geological and resource sector regulation data. It shows models for specialised geological datasets such as _Boreholes_, _Samples_ and _Mining Authorisation_ as well as more generic _Background Models_ such as https://www.w3.org/TR/vocab-ssn/[_SOSA_] (for observations and measurements), http://www.opengis.net/doc/IS/geosparql/1.1[_GeoSPARQL_] (sor spatial features) and so on. It also indicates some of the vocabularies of controlled terms used by both _Component_ and _Background Models_, such as _Minerals_ and _Commodities_.
+The figure above shows the parts of the https://www.wa.gov.au/organisation/department-of-mines-petroleum-and-exploration/geological-survey-of-western-australia[Geological Survey of Western Australia]'s Supermodel of their geological and resource sector regulation data. It shows models for specialised geological datasets such as _Boreholes_, _Samples_ and _Mining Authorisation_ as well as more generic _Background Models_ such as https://www.w3.org/TR/vocab-ssn/[_SOSA_] (for observations and measurements), http://www.opengis.net/doc/IS/geosparql/1.1[_GeoSPARQL_] (sor spatial features) and so on. It also indicates some of the vocabularies of controlled terms used by both _Foreground_ and _Background Models_, such as _Minerals_ and _Commodities_.
 
 The complete documentation for the GSWA Supermodel https://geological-survey-of-western-australia.github.io/GSWA-Supermodel/[is online].
 
@@ -82,7 +82,7 @@ Critical to creating formal supermodel elements relations are element identifica
 
 === Model Roles
 
-One aspect of formal supermodel element descriptions are the roles that elements play within a supermodel scope. Particular models may be for the representation of the data within datasets to be integrated are called - _Component Model_ role - or they may be used by other models as reference - _Background Model_ role - or perhaps both (see the GSWA overview figure at the top).
+One aspect of formal supermodel element descriptions are the roles that elements play within a supermodel scope. Particular models may be for the representation of the data within datasets to be integrated are called - _Foreground Model_ role - or they may be used by other models as reference - _Background Model_ role - or perhaps both (see the GSWA overview figure at the top).
 
 The roles for supermodel elements are indicated in the formal modelling of it, as per the <<Model>> section below, and the roles themselves are details in the <<Roles>> section.
 
@@ -92,15 +92,15 @@ This section describes how to create a supermodel. In outline:
 
 1. Identify Datasets
 2. Identify Dataset Models
-** assume one will be implemented unless all elements of the model can be modelled using <<Background Model, Background Models>> or other Dataset's Component Models
+** assume one will be implemented unless all elements of the model can be modelled using <<Background Model, Background Models>> or other Dataset's Foreground Models
 3. Extract controlled terms
 ** within the datasets and models and term these <<Vocabulary, Vocabularies>>
 4. Look for modelling patterns
-** within the Component Models. Taken from general-purpose models
+** within the Foreground Models. Taken from general-purpose models
 5. Identify general-purpose models
-** as <<Background Model>>, for those used for modelling patterns used in Component Models
+** as <<Background Model>>, for those used for modelling patterns used in Foreground Models
 6. Formalise Relations
-** the dependence of Component Models on Background Models, roles and so on, as per the <<Model>> section
+** the dependence of Foreground Models on Background Models, roles and so on, as per the <<Model>> section
 
 === 1. Identify Datasets
 
@@ -119,7 +119,7 @@ These usually provide better datasets criteria than data by time or space as the
 
 For each dataset, a formal and separate model must be either created or borrowed.
 
-Assume that each dataset will have a Component Model, but expect and aim to deprecate any you can for shared models and Background Model reuse as this leads to better integration.
+Assume that each dataset will have a Foreground Model, but expect and aim to deprecate any you can for shared models and Background Model reuse as this leads to better integration.
 
 === 3. Extract controlled terms
 
@@ -154,13 +154,13 @@ Searching for words in your domain of interest in the above locations will lead 
 
 === 5. Identify general-purpose models
 
-All general purpose models that have had their whole or parts reused by Component Models must be included as <<Background Model, Background Models>> within the supermodel.
+All general purpose models that have had their whole or parts reused by Foreground Models must be included as <<Background Model, Background Models>> within the supermodel.
 
 === 6. Formalise Relations
 
 Once the above steps have been carried out, a formal description of the supermodel must be made, according to the <<Model>> below.
 
-This means defining a `Supermodel` object, all the Component & Background Models and Vocabularies within it, as well as each's role and relations between them.
+This means defining a `Supermodel` object, all the Foreground & Background Models and Vocabularies within it, as well as each's role and relations between them.
 
 == Model
 
@@ -454,133 +454,56 @@ With this model is supplied a validator that can be used to test conformance cla
 
 Tools such as https://shacl-playground.zazuko.com/[Zazuko's SHACL Playground] or https://tools.kurrawong.ai/validate[KurrawongAI's SHACL Validator] can be used with the validator file above to test supermodel data online or the https://pypi.org/project/pyshacl[pySHACL] package can be used to validate data within Python code.
 
-////
- e their dependence on other models when reusing parts from them. For example, if a _Background Model_ called *Feature Observations* has a pattern for _Feature Property Measurements_, then a _Component Model_ of *Field Measurements of Trees* implementing that pattern will need to state that it is a _profile of_ *Feature Observations*.
-
-This statement of dependence is formalised in Supermodels using <<PROF, _The Profiles Vocabulary_>> which makes it a _Background Model_ too.
-
-_Component Models_ much profile - depend on - as many common _Background Models_ or other _Component Models_ as possible and _Background Models_ may profile other _Background Models_ too. The Supermodel is then a set of models with all dependencies shown and no _Component Models_ depending on nothing: this would indicate they are un-integrated. Fundamental _Background Models_ will likely not depend on anything, other than perhaps modelling system models, such as <<OWL, _Web Ontology Language_>> or <<RDFS, _Resource Description Framework Schema_>>.
-////
-
-////
-=== Roles
-Each model and vocabulary included within an instance of a Supermodel has at least one of the following Roles assigned to it:
-
-Integrative Model:: Role for a model that is specialised and extended by multiple models with Component Model role
-
-Component Model:: Role for individual datasets within a Supermodels' remit which specialise and extend models with the Integrative and Background Model roles
-
-Background Model:: Role for a model that is specialised and extended by some models with Component Model role but not all
-
-Vocabulary:: Role for a controlled list of terms used in any of the Supermodel's models
-
-=== Mechanisms
-
-The Supermodel and models within it must use a consistent modelling mechanism that allows for the modelling of both the content of the various models and relations between them, as per the section next.
-
-All Supermodels implemented to date use https://www.w3.org/standards/semanticweb/[Semantic Web] modelling techniques and, specifically, the <<RDF>>, <<RDFS>> and <<OWL>> fundamental models.
-
-These models are given the role of _Background Model_ within a Supermodel but are often not listed in overview diagrams, due to their low-level nature.
-
-=== Model Relations
-
-Models within the Supermodel relate to one another in various ways. The most common way is for one to _profile_ another where profile means:
-
-[quote]
-a specification that constrains, extends, combines, or provides guidance or explanation about the usage of other specifications <<PROF>>
-
-Within Supermodel practice, profiling another model means using elements and patterns from it and specialising and extending them while ensuring that any data conforming to the profiling model still conforms to the profiled model.
-
-For example, a model with the _Integrative Model_ role might declare a class for `Person` and require that all `Person` instances have present one predicate of `height` indicating a `float` value. A profiling model would be free to declare a subclass of `Person` called `Student` with specialised predicates relating to student things, but it must still ensure that all instances of `Student` require a `height` predicate so that they are still valid `Person` instances.
-
-Profiling between models within a Supermodel is indicated with the `prof:isProfileOf` predicate on the main model element, usually an instance of `owl:Ontology`.
-////
-
 === Roles
 
 These are the roles that elements within a supermodels can play. They cannot be interpreted as classes of object because roles for datasets, models and so on may vary between supermodel instances and thus are not an eternal type for that object.
 
 The roles are a vocabulary of concepts in this hierarchy:
 
-* <<role-supermodel-definition>>
 * <<role-dataset>>
-* <<role-model>>
-** <<role-component-model>>
-** <<role-reference-data>>
+** <<role-foreground-dataset>>
+** <<role-reference-dataset>>
 *** <<role-vocabulary>>
+* <<role-model>>
+** <<role-supermodel-definition>>
+** <<role-foreground-model>>
+** <<role-background-model>>
+** <<role-validator>>
 * <<role-data>>
-** <<role-primary-data>>
+** <<role-foreground-data>>
 ** <<role-reference-data>>
-* <<role-validator>>
 
-[[role-supermodel-definition]]
-==== Supermodel Definition
-
-`https://linked.data.gov.au/def/supermodel/role/supermodel-definition`
-
-Acting as the definitional object of the Supermodel and container of all its elements.
-
-[[role-data]]
-==== Data
-
-`https://linked.data.gov.au/def/supermodel/role/data`
-
-Acting as a collection of discrete or continuous values that convey information, describing the quantity, quality, fact, statistics, other basic units of meaning.
+This roles vocabulary is available in RDF at https://linked.data.gov.au/def/supermodel/roles.ttl.
 
 [[role-dataset]]
 ==== Dataset
 
-`https://linked.data.gov.au/def/supermodel/role/dataset`
+`https://linked.data.gov.au/def/supermodel/roles/dataset`
 
-Acting as a collection of primary or reference <<Data>>.
+Acting as a managed aggregation of foreground or reference <<Data>>.
 
-[[role-component-model]]
-==== Component Model
+[[role-foreground-dataset]]
+==== Foreground Dataset
 
-`https://linked.data.gov.au/def/supermodel/role/component-model`
+`https://linked.data.gov.au/def/supermodel/roles/foreground-dataset`
 
-Acting as a <<Model>> for a <<Dataset>> of <<Primary Data>>.
+Acting as a collection of foreground <<Data>>.
 
-This is a child term of <<Reference Data>>.
+[[role-reference-dataset]]
+==== Reference Dataset
 
-[[role-background-model]]
-==== Background Model
+`https://linked.data.gov.au/def/supermodel/roles/reference-dataset`
 
-`https://linked.data.gov.au/def/supermodel/role/background-model`
-
-Acting as a <<Model>> for a <<Dataset>> of <<Reference Data>>.
-
-This is a child term of <<Reference Data>>.
-
-[[role-model]]
-==== Model
-
-`https://linked.data.gov.au/def/supermodel/role/model`
-
-Acting as an abstract information object that organises elements of data and standardises how they relate to one another and to the properties of real-world entities.
-
-[[role-primary-data]]
-==== Primary Data
-
-`https://linked.data.gov.au/def/supermodel/role/primary-data`
-
-Acting as <<Data>> that is the main subject of the supermodel that may or may not be used as <<Reference Data>> also.
-
-[[role-reference-data]]
-==== Reference Data
-
-`https://linked.data.gov.au/def/supermodel/role/reference-data`
-
-Acting as <<Data>> that is used as an integration point by one or more <<Dataset, Datasets>>.
+Acting as a <<Dataset>> that is used as an integration point by one or more <<Dataset, Datasets>>.
 
 [[role-vocabulary]]
 ==== Vocabulary
 
-`https://linked.data.gov.au/def/supermodel/role/vocabulary`
+`https://linked.data.gov.au/def/supermodel/roles/vocabulary`
 
-Acting as a controlled collection of terms, usually with a hierarchy but sometimes just a list, used as <<Reference Data>> by <<Dataset, Datasets>>.
+Acting as a controlled collection of terms, usually with a hierarchy but sometimes just a list, used as <<Reference Dataset>> by <<Dataset, Datasets>>.
 
-This is a child term of <<Reference Data>>.
+This is a child term of <<Reference Dataset>>.
 
 [[NOTE]]
 ====
@@ -589,12 +512,67 @@ In general in the <<Semantic Web>>, vocabularies are indistinguishable from simp
 See the https://linked.data.gov.au/def/vocpub[VocPub profile] as a model of classification vocabularies that can be folled for supermodels.
 ====
 
+[[role-model]]
+==== Model
+
+`https://linked.data.gov.au/def/supermodel/roles/model`
+
+Acting as an abstract information object that organises elements of data and standardises how they relate to one another and to the properties of real-world entities.
+
+[[role-supermodel-definition]]
+==== Supermodel Definition
+
+`https://linked.data.gov.au/def/supermodel/roles/supermodel-definition`
+
+Acting as the definitional object of the Supermodel and container of all its elements.
+
+[[role-foreground-model]]
+==== Foreground Model
+
+`https://linked.data.gov.au/def/supermodel/roles/foreground-model`
+
+Acting as a <<Model>> for a <<Dataset>> of <<Foreground Data>>.
+
+This is a child term of <<Model>>.
+
+[[role-background-model]]
+==== Background Model
+
+`https://linked.data.gov.au/def/supermodel/roles/background-model`
+
+Acting as a <<Model>> for a <<Dataset>> of <<Reference Dataset>>.
+
+This is a child term of <<Model>>.
+
 [[role-validator]]
 ==== Validator
 
-`https://linked.data.gov.au/def/supermodel/role/validation`
+`https://linked.data.gov.au/def/supermodel/roles/validation`
 
 Acting as resource to validate the conformance of <<Dataset, Datasets>> to <<Profile, Profiles>>.
+
+This is a child term of <<Model>>.
+
+[[role-data]]
+==== Data
+
+`https://linked.data.gov.au/def/supermodel/roles/data`
+
+Acting as a collection of discrete or continuous values that convey information, describing the quantity, quality, fact, statistics, other basic units of meaning.
+
+[[role-foreground-data]]
+==== Foreground Data
+
+`https://linked.data.gov.au/def/supermodel/roles/foreground-data`
+
+Acting as <<Data>> that is the main subject of the supermodel that may or may not also be used as <<role-reference-data>>.
+
+[[role-reference-data]]
+==== Reference Data
+
+`https://linked.data.gov.au/def/supermodel/roles/reference-data`
+
+Acting as <<Data>> that is not the main subject of the supermodel but is linked to by such data.
 
 == Demonstrations
 
@@ -636,4 +614,47 @@ There are 3 billion women in the world who don't look like supermodels and only 
 ////
 [[RDFS]]
 [RDFS]:: World Wide Web Consortium, _RDF Schema 1.1_, W3C Recommendation (25 February 2014). https://www.w3.org/TR/rdf-schema/
+////
+
+
+////
+ e their dependence on other models when reusing parts from them. For example, if a _Background Model_ called *Feature Observations* has a pattern for _Feature Property Measurements_, then a _Foreground Model_ of *Field Measurements of Trees* implementing that pattern will need to state that it is a _profile of_ *Feature Observations*.
+
+This statement of dependence is formalised in Supermodels using <<PROF, _The Profiles Vocabulary_>> which makes it a _Background Model_ too.
+
+_Foreground Models_ much profile - depend on - as many common _Background Models_ or other _Foreground Models_ as possible and _Background Models_ may profile other _Background Models_ too. The Supermodel is then a set of models with all dependencies shown and no _Foreground Models_ depending on nothing: this would indicate they are un-integrated. Fundamental _Background Models_ will likely not depend on anything, other than perhaps modelling system models, such as <<OWL, _Web Ontology Language_>> or <<RDFS, _Resource Description Framework Schema_>>.
+////
+
+////
+=== Roles
+Each model and vocabulary included within an instance of a Supermodel has at least one of the following Roles assigned to it:
+
+Integrative Model:: Role for a model that is specialised and extended by multiple models with Foreground Model role
+
+Foreground Model:: Role for individual datasets within a Supermodels' remit which specialise and extend models with the Integrative and Background Model roles
+
+Background Model:: Role for a model that is specialised and extended by some models with Foreground Model role but not all
+
+Vocabulary:: Role for a controlled list of terms used in any of the Supermodel's models
+
+=== Mechanisms
+
+The Supermodel and models within it must use a consistent modelling mechanism that allows for the modelling of both the content of the various models and relations between them, as per the section next.
+
+All Supermodels implemented to date use https://www.w3.org/standards/semanticweb/[Semantic Web] modelling techniques and, specifically, the <<RDF>>, <<RDFS>> and <<OWL>> fundamental models.
+
+These models are given the role of _Background Model_ within a Supermodel but are often not listed in overview diagrams, due to their low-level nature.
+
+=== Model Relations
+
+Models within the Supermodel relate to one another in various ways. The most common way is for one to _profile_ another where profile means:
+
+[quote]
+a specification that constrains, extends, combines, or provides guidance or explanation about the usage of other specifications <<PROF>>
+
+Within Supermodel practice, profiling another model means using elements and patterns from it and specialising and extending them while ensuring that any data conforming to the profiling model still conforms to the profiled model.
+
+For example, a model with the _Integrative Model_ role might declare a class for `Person` and require that all `Person` instances have present one predicate of `height` indicating a `float` value. A profiling model would be free to declare a subclass of `Person` called `Student` with specialised predicates relating to student things, but it must still ensure that all instances of `Student` require a `height` predicate so that they are still valid `Person` instances.
+
+Profiling between models within a Supermodel is indicated with the `prof:isProfileOf` predicate on the main model element, usually an instance of `owl:Ontology`.
 ////
