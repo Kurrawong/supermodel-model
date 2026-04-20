@@ -366,10 +366,14 @@ The definition of this predicate is taken from <<OWL>>.
 ==== Shape
 
 ////
-NOTE (Les K):
-SHACL uses sh:NodeShape and sh:PropertyShape. "sh:Shape" is not part of the standard SHACL vocabulary.
+NOTE (Les):
+`sh:Shape` is a superclass in SHACL, with `sh:NodeShape` and `sh:PropertyShape`
+as its primary concrete subclasses.
 
-Leaving as-is here as this may be intentional abstraction.
+In most SHACL usage, those subclasses are used directly.
+`sh:Shape` is technically valid but uncommon in examples.
+
+Leaving as-is here as this may be an intentional abstraction in the Supermodel.
 ////
 
 Use instances of `sh:Shape` for graph pattern matching elements within resources with the role <<Validator>>.
