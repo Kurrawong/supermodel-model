@@ -48,7 +48,7 @@ image::images/gswa-supermodel.svg["GSWA Supermodel",width=75%]
 [.text-center]
 _An informal overview of the https://geological-survey-of-western-australia.github.io/GSWA-Supermodel/[GSWA Supermodel] and its various parts._
 
-The figure above shows the parts of the https://www.wa.gov.au/organisation/department-of-mines-petroleum-and-exploration/geological-survey-of-western-australia[Geological Survey of Western Australia]'s Supermodel of their geological and resource sector regulation data. It shows models for specialised geological datasets such as _Boreholes_, _Samples_ and _Mining Authorisation_ as well as more generic _Background Models_ such as https://www.w3.org/TR/vocab-ssn/[_SOSA_] (for observations and measurements), http://www.opengis.net/doc/IS/geosparql/1.1[_GeoSPARQL_] (sor spatial features) and so on. It also indicates some of the vocabularies of controlled terms used by both _Foreground_ and _Background Models_, such as _Minerals_ and _Commodities_.
+The figure above shows the parts of the https://www.wa.gov.au/organisation/department-of-mines-petroleum-and-exploration/geological-survey-of-western-australia[Geological Survey of Western Australia]'s Supermodel of their geological and resource sector regulation data. It shows models for specialised geological datasets such as _Boreholes_, _Samples_ and _Mining Authorisation_ as well as more generic _Background Models_ such as https://www.w3.org/TR/vocab-ssn/[_SOSA_] (for observations and measurements), http://www.opengis.net/doc/IS/geosparql/1.1[_GeoSPARQL_] (for spatial features) and so on. It also indicates some of the vocabularies of controlled terms used by both _Foreground_ and _Background Models_, such as _Minerals_ and _Commodities_.
 
 The complete documentation for the GSWA Supermodel https://geological-survey-of-western-australia.github.io/GSWA-Supermodel/[is online].
 
@@ -84,7 +84,7 @@ Critical to creating formal supermodel elements relations are element identifica
 
 One aspect of formal supermodel element descriptions are the roles that elements play within a supermodel scope. Particular models may be for the representation of the data within datasets to be integrated are called - _Foreground Model_ role - or they may be used by other models as reference - _Background Model_ role - or perhaps both (see the GSWA overview figure at the top).
 
-The roles for supermodel elements are indicated in the formal modelling of it, as per the <<Model>> section below, and the roles themselves are details in the <<Roles>> section.
+The roles for supermodel elements are indicated in the formal modelling of it, as per the <<Model>> section below, and the roles themselves are detailed in the <<Roles>> section.
 
 == Methodology
 
@@ -123,7 +123,7 @@ Assume that each dataset will have a Foreground Model, but expect and aim to dep
 
 === 3. Extract controlled terms
 
-Lookup tables in databases, taxonomies and flat lists of controlled terms need to be extracted from datasets and models for them and placed into stand-along vocabularies. This allows for reuse of their elements across datasets creating more integration points.
+Lookup tables in databases, taxonomies and flat lists of controlled terms need to be extracted from datasets and models for them and placed into stand-alone vocabularies. This allows for reuse of their elements across datasets creating more integration points.
 
 === 4. Look for modelling patterns
 
@@ -240,7 +240,7 @@ The source data for the image above, in the https://en.wikipedia.org/wiki/Turtle
 
 <https://linked.data.gov.au/dataset/qld-road-names>
     a schema:Dataset ;
-    schema:name "Queensland road Names Dataset" ;
+    schema:name "Queensland Road Names Dataset" ;
     dcterms:conformsTo <https://linked.data.gov.au/def/roads> ;
 .
 
@@ -365,13 +365,20 @@ The definition of this predicate is taken from <<OWL>>.
 
 ==== Shape
 
+////
+NOTE (Les K):
+SHACL uses sh:NodeShape and sh:PropertyShape. "sh:Shape" is not part of the standard SHACL vocabulary.
+
+Leaving as-is here as this may be intentional abstraction.
+////
+
 Use instances of `sh:Shape` for graph pattern matching elements within resources with the role <<Validator>>.
 
 The definition of this predicate is taken from <<SH>>.
 
 ==== Concept
 
-Use instances of `skos:ConceptScheme` for elements with the role <<Vocabulary>>.
+Use instances of `skos:Concept` for elements with the role <<Vocabulary>>.
 
 The definition of this predicate is taken from <<SKOS>>.
 
@@ -450,7 +457,7 @@ The definition of this predicate is taken from <<SKOS>>.
 
 With this model is supplied a validator that can be used to test conformance claims of data to it. The validator implements a number of rules ensuring that Classes and Predicates are formulated correctly and roles assigned appropriately. The validator is online at:
 
-* https://linked.data.gov.au/def/supermodel/vaidator
+* https://linked.data.gov.au/def/supermodel/validator
 
 Tools such as https://shacl-playground.zazuko.com/[Zazuko's SHACL Playground] or https://tools.kurrawong.ai/validate[KurrawongAI's SHACL Validator] can be used with the validator file above to test supermodel data online or the https://pypi.org/project/pyshacl[pySHACL] package can be used to validate data within Python code.
 
@@ -513,7 +520,7 @@ This is a child term of <<Reference Dataset>>.
 ====
 In general in the <<Semantic Web>>, vocabularies are indistinguishable from simple <<Model, Models>> but within supermodels, vocabularies should be created as lists or hierarchies of terms used to classify or categorise other objects, not as collections of complex objects.
 
-See the https://linked.data.gov.au/def/vocpub[VocPub profile] as a model of classification vocabularies that can be folled for supermodels.
+See the https://linked.data.gov.au/def/vocpub[VocPub profile] as a model of classification vocabularies that can be followed for supermodels.
 ====
 
 [[role-model]]
@@ -614,7 +621,7 @@ There are 3 billion women in the world who don't look like supermodels and only 
 [RDFS]:: World Wide Web Consortium, _RDF Schema 1.1_, W3C Recommendation (25 February 2014). http://www.w3.org/TR/rdf11-schema/
 
 [[SDO]]
-[PROF]:: schema.org Consortium, _schema.org_, Ontology (14 November 2025). https://schema.org
+[SDO]:: schema.org Consortium, _schema.org_, Ontology (14 November 2025). https://schema.org
 
 [[SH]]
 [SH]:: World Wide Web Consortium, _Shapes Constraint Language (SHACL)_, Ontology (20 July 2017). https://www.w3.org/TR/shacl/
